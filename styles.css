@@ -92,3 +92,47 @@ button:active {
 .operation-button {
   color: #ff7433;
 }
+
+.preloader-wrapper{
+  margin-top: 150px;
+}
+
+.grid-container{
+  padding: 50px;
+  text-align: center;
+  min-height: 600px;
+}
+
+#current-page {
+  width: 30px;
+  height: 30px;
+}
+
+#no-results{
+  display: none;
+}
+
+#no-results.show{
+  display: block;
+}
+
+table th{
+  cursor: pointer;
+}
+
+.sort-controls{
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.sort-controls i{
+  top: 5px;
+  position: absolute;
+  opacity: 0;
+  transition-duration: 0.3s;
+}
+th:hover .sort-controls i{
+  opacity: 1;
+}
