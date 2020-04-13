@@ -4,7 +4,6 @@
 
 body * {
   font-family: 'Roboto', sans-serif;
-  font-size: 22px;
 }
 
 .calculator {
@@ -17,6 +16,7 @@ body * {
 
 i {
   pointer-events: none;
+  font-size: 22px;
 }
 
 .calculator-input {
@@ -32,6 +32,7 @@ i {
   grid-column-start: 1;
   grid-column-end: 5;
   word-wrap: anywhere;
+  font-size: 22px;
 }
 
 .calculator-output {
@@ -43,6 +44,7 @@ i {
   padding: 5px 15px;
   box-sizing: border-box;
   word-wrap: anywhere;
+  font-size: 22px;
 }
 
 .calculator-output span,
@@ -70,6 +72,7 @@ button {
   background-position: center;
   transition: background 0.8s;
   border-radius: calc(var(--main-width) / 4);
+  font-size: 22px;
 }
 button:hover {
   background: #3c3f42 radial-gradient(circle, transparent 1%, #3c3f42 1%)

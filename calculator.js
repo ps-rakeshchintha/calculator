@@ -42,6 +42,9 @@ window.onload = function () {
             } else if (value === "backspace") {
                 inputValue = inputValue.length === 1 ? '0' : inputValue.slice(0, -1)
             } else if (value === ".") {
+                if(previousInput === "."){
+                    return
+                }
                 inputValue += (numbersArray.indexOf(previousInput) > -1 && previousInput === "0") || previousInput === '' ? value : "0" + value
             } else if (value !== "=" && value !== "enter") {
                 if(value === "0" && previousInput === "%"){
