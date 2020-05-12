@@ -22,12 +22,10 @@ jobs:
 
     - name: Get the version
       id: get_version
-      run: |
-        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//},
-        echo "$VERSION"
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     - name: Print the version
-      run: echo $VERSION
+      run: echo $steps.get_version.outputs.VERSION
 
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
