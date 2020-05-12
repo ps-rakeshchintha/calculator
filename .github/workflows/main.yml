@@ -8,6 +8,9 @@ on:
   release:
     types: # This configuration does not affect the page_build event above
       - published
+
+env:
+  VERSION: ${GITHUB_REF/refs\/tags\//}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -30,5 +33,5 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        echo Add other actions to build $VERSION,
+        echo test, and deploy your project ${VERSION}.
