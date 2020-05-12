@@ -8,9 +8,6 @@ on:
   release:
     types: # This configuration does not affect the page_build event above
       - published
-
-env:
-  VERSION: echo ${GITHUB_REF/refs\/tags\//}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -25,7 +22,7 @@ jobs:
 
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     - name: Print the version
       run: echo ${GITHUB_REF/refs\/tags\//}
