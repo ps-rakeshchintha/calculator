@@ -17,13 +17,14 @@ jobs:
     - name: Print the version
       run: echo $VERSION
 
-    - name: ls -a via ssh
-      uses: garygrossgarten/github-action-ssh@release
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
       with:
-        command: ls -a
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        privateKey: ${{ secrets.KEY}}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: whoami
 
     - name: Build and deploy the framework
       run: |
