@@ -17,6 +17,19 @@ jobs:
     - name: Print the version
       run: echo $VERSION
 
+    - name: check if folder exists
+      id: hasfolder
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: echo ::set-env name=HASFOLDER::${[ -d "1.1.1" ] && echo "yes" || echo "noop"}
+      
+    - name: Check the folder
+      run: echo $HASFOLDER
+
     - name: executing remote ssh commands using ssh key
       id: hasfolder
       uses: appleboy/ssh-action@master
