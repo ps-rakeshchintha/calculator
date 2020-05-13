@@ -25,13 +25,21 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: test -d ${{github.event.release.tag_name}} && exit 1 || echo "Does not exists"
+    
+    # The next steps will only run if the version folder does not exists
+
+    - name: Simulate build
+      run: |
+        mkdir ${VERSION}
+        cd ./${VERSION}
+        touch script.js
 
     - name: Copy to gen 01 server
       uses: easingthemes/ssh-deploy@v2.0.7
       env:
         SSH_PRIVATE_KEY: ${{ secrets.KEY }}
         ARGS: "-rltgoDzvO"
-        SOURCE: "dist/"
+        SOURCE: ${VERSION}
         REMOTE_HOST: ${{ secrets.HOST }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: './'
