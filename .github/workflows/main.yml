@@ -1,4 +1,4 @@
-name: CI
+name: Deploy
 on:
   release:
     types:
@@ -16,6 +16,15 @@ jobs:
 
     - name: Print the version
       run: echo $VERSION
+
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: whoami
 
     - name: Build and deploy the framework
       run: |
