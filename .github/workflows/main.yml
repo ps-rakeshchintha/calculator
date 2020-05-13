@@ -17,7 +17,7 @@ jobs:
     - name: Print the version
       run: echo $VERSION
 
-    - name: executing remote ssh commands using ssh key
+    - name: check folder
       id: test
       uses: appleboy/ssh-action@master
       with:
@@ -25,7 +25,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: test -d $VERSION && exit 1 || echo "Does not exist"
+        script: test -d ${{github.event.release.tag_name}} && exit 1 || echo "Does not exist"
 
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@v2.0.7
