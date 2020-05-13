@@ -15,7 +15,7 @@ jobs:
       run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     - name: Print the version
-      run: echo $VERSION
+      run: rsync --version 
 
     - name: executing remote ssh commands using ssh key
       id: hasfolder
