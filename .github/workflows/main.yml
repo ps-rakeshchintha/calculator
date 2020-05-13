@@ -15,7 +15,7 @@ jobs:
       run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     - name: Print the version
-      run: rsync --version 
+      run: echo $VERSION
 
     - name: executing remote ssh commands using ssh key
       id: hasfolder
@@ -36,8 +36,3 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: './'
-        
-    - name: Build and deploy the framework
-      run: |
-        echo commands to build ${steps.hasfolder.outputs.},
-        echo deploy your framework ${VERSION}.
