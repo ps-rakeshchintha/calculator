@@ -24,7 +24,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: test -d ${{$VERSION}} && exit 1 || echo "Folder does not exist"
+        script: test -d ${{github.event.release.tag_name}} && exit 1 || echo "Folder does not exist"
     
     # The next steps will only run if the version folder does not exist in the server
     - name: Simulate build
