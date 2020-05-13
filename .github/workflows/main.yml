@@ -16,18 +16,17 @@ jobs:
     - name: Print the version
       run: echo $VERSION
 
+    # This step with error out if the folder already exists. If not, it just prints "Folder does not exist"
     - name: check folder
-      id: test
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: test -d ${{github.event.release.tag_name}} && exit 1 || echo "Does not exists"
+        script: test -d ${VERSION} && exit 1 || echo "Folder does not exist"
     
-    # The next steps will only run if the version folder does not exists
-
+    # The next steps will only run if the version folder does not exist in the server
     - name: Simulate build
       run: |
         mkdir ${VERSION}
