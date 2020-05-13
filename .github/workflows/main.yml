@@ -25,10 +25,18 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: |
-          ls -a
-          [ -d test ] && echo "yes" || echo "noop"
+        script:  ./testing.sh
 
+    - name: Deploy to Staging server
+      uses: easingthemes/ssh-deploy@v2.0.7
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+        ARGS: "-rltgoDzvO"
+        SOURCE: "dist/"
+        REMOTE_HOST: ${{ secrets.HOST }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: '~'
+        
     - name: Build and deploy the framework
       run: |
         echo commands to build ${steps.hasfolder.outputs.},
