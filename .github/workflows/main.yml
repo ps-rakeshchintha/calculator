@@ -25,7 +25,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: test -d ${{ $VERSION}} && exit 1 || echo "Does not exist"
+        script: test -d $VERSION && exit 1 || echo "Does not exist"
 
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@v2.0.7
