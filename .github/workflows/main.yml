@@ -25,10 +25,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: test -d test && echo "Found/Exists" || echo "Does not exist"
+        script: echo "##[set-output name=hasfolder;]$(test -d test && echo "Found/Exists" || echo "Does not exist")
       
     - name: Check the folder
-      run: echo ${steps.test.outputs}
+      run: echo ${steps.test.outputs.hasfolder}
 
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@v2.0.7
