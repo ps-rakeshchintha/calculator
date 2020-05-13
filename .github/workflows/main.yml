@@ -17,15 +17,15 @@ jobs:
     - name: Print the version
       run: echo $VERSION
 
-    - name: check if folder exists
-      id: hasfolder
+    - name: executing remote ssh commands using ssh key
+      id: test
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: [ -d ${{ $VERSION }} ] && echo "yes" || echo "noop"
+        script:  [ -d test ] && echo "yes" || echo "noop"
       
     - name: Check the folder
       run: echo ${steps.hasfolder.outputs}
